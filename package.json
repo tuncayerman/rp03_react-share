@@ -1,5 +1,5 @@
 {
-  "name": "rp02_react-share",
+  "name": "react-share",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,7 +10,6 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
     "date-fns": "^2.16.1",
-    "dotenv": "^8.2.0",
     "firebase": "^8.1.1",
     "formik": "^2.2.5",
     "prop-types": "^15.7.2",
@@ -18,7 +17,6 @@
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
-    "react-yup": "^1.19.2",
     "web-vitals": "^0.2.4",
     "yup": "^0.31.0"
   },

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
   Button,
   TextField,
@@ -21,9 +22,10 @@ const signInValidationSchema = Yup.object().shape({
 
 const stylesFunc = makeStyles((theme) => ({
   wrapper: {
-    marginTop: "10rem",
+    marginTop: "3rem",
     height: "calc(100vh - 19.0625rem)",
     textAlign: "center",
+    marginBottom:"9rem",
   },
   avatar: {
     margin: "1rem auto",
@@ -31,7 +33,13 @@ const stylesFunc = makeStyles((theme) => ({
   },
   signIn: {
     margin: "1rem",
-  },
+  }, 
+  register: {
+    textDecoration: 'none',
+    fontWeight: '600',
+    paddingLeft : '0.5rem'
+  }
+  
 }));
 
 const initialValues = {
@@ -41,16 +49,23 @@ const initialValues = {
 
 function Signin() {
   const [loginError, setLoginError] = useState(null);
+  const history = useHistory();
   const signinStyles = stylesFunc();
 
   const handleGoogleButtonClick = () => {
     firebase.useGoogleProvider();
+    alert('You are succesfully logged in!');
+    history.push('/');
   };
 
   const handleFormSubmit = (values) => {
     // alert(JSON.stringify(values, null, 2));
     firebase.signIn(values.email, values.password).then((res) => {
-      res ? setLoginError(res) : setLoginError(null);
+      if (res) {
+        setLoginError(res);
+        return;
+      }
+      history.push("/");
     });
   };
 
@@ -125,6 +140,14 @@ function Signin() {
           </form>
         )}
       </Formik>
+      <p>
+        Don't have an account?      
+        <a className = {signinStyles.register} href="/register">Register</a>
+      </p>
+            
+      <p>
+         <a className = {signinStyles.register} href="/forgot-password">Forgot Password?</a>
+      </p>
     </Container>
   );
 }
